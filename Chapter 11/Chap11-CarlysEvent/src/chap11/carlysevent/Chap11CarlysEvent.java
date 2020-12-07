@@ -16,62 +16,24 @@ public class Chap11CarlysEvent {
     static int exit = 0;
     
     public static void main(String[] args) {
-        DinnerEvent[] dinnerEvents = new DinnerEvent[4];
+//        DinnerEvent[] dinnerEvents = new DinnerEvent[4];
         
-        dinnerEvents[0] = new DinnerEvent(getEventNumber(), getNumOfGuests(), 
-            getPhoneNumber(), getEventType(), getEntree(), getSide1(), 
-            getSide2(), getDessert());
-        dinnerEvents[1] = new DinnerEvent(getEventNumber(), getNumOfGuests(), 
-            getPhoneNumber(), getEventType(), getEntree(), getSide1(), 
-            getSide2(), getDessert());
-        dinnerEvents[2] = new DinnerEvent(getEventNumber(), getNumOfGuests(), 
-            getPhoneNumber(), getEventType(), getEntree(), getSide1(), 
-            getSide2(), getDessert());
-        dinnerEvents[3] = new DinnerEvent(getEventNumber(), getNumOfGuests(), 
-            getPhoneNumber(), getEventType(), getEntree(), getSide1(), 
-            getSide2(), getDessert());
-//        events[4] = new Event(getEventNumber(), getNumOfGuests(), 
-//                getPhoneNumber(), getEventType());
-//        events[5] = new Event(getEventNumber(), getNumOfGuests(), 
-//                getPhoneNumber(), getEventType());
-//        events[6] = new Event(getEventNumber(), getNumOfGuests(), 
-//                getPhoneNumber(), getEventType());
-//        events[7] = new Event(getEventNumber(), getNumOfGuests(), 
-//                getPhoneNumber(), getEventType());
+        DinnerEvent dinnerEvent = new DinnerEvent(getEventNumber(), 
+            getNumOfGuests(), getPhoneNumber(), getEventType(), getEntree(), 
+            getSide1(), getSide2(), getDessert());
+
 
 //      Test Events
 //        dinnerEvents[0] = new DinnerEvent("B232", 11, "(555)555-5555", 2, 0, 0, 
 //                                          1, 1);
-//        dinnerEvents[1] = new DinnerEvent("L022", 5, "123555-5555", 4, 1, 2, 3,
-//                                          2);
-//        dinnerEvents[2] = new DinnerEvent("C131", 75, "(555)5255225", 3, 2, 0,
-//                                          2, 0);
-//        dinnerEvents[3] = new DinnerEvent("H0312", 22, "1234567890", 1, 3, 1, 3,
-//                                          1);
-//        events[4] = new Event("E073", 18, "12345678901", 0);
-//        events[5] = new Event("A683", 37, "0", 3);
-//        events[6] = new Event("B200", 7, "1234", 2);
-//        events[7] = new Event("Z666", 66, "abcdefghij", 1);
 
-//        String advertisement = "Please come to my event!\n";
-//        String message = "";
         
         Event.displayMotto();
         
-        while(exit != 1) {
-            displayEventInfoArray(dinnerEvents);
-            pickSort(dinnerEvents);
-        }
-//        displayEventInfo(events[0]);
-//        displayEventInfo(events[1]);
-//        displayEventInfo(events[2]);
-//        getBigger(getBigger(event1, event2), event3);
-//        Event smallEvent = getSmaller(getSmaller(event1, event2), event3);
-//        for ( int i = 0; i != smallEvent.getNumOfGuests(); i++ ) {
-//            message += advertisement;
+//        while(exit != 1) {
+//            displayEventInfoArray(dinnerEvents);
+//            pickSort(dinnerEvents);
 //        }
-//        JOptionPane.showMessageDialog(null, 
-//            message, "Annoying Sales Advertisement", JOptionPane.NO_OPTION);
     }
     
     public static int getNumOfGuests() {

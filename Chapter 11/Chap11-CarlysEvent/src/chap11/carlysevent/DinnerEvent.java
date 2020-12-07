@@ -13,9 +13,7 @@ public class DinnerEvent extends Event {
     private int side1;
     private int side2;
     private int dessert;
-    Employee[] employee = new Employee[15];
-    Waitstaff waiter1 = new Waitstaff(1000, "Larry", "Davis", 9.0); 
-    employee[0] = waiter1;
+    private final Employee[] employees = new Employee[15];
     
     // Constructors
     public DinnerEvent(String eventNum, int numOfGuests, String phoneNumber, 
@@ -49,6 +47,25 @@ public class DinnerEvent extends Event {
         this.dessert = dessert;
     }
     
+    public void setEmployee(Employee[] employee, int employeeType, 
+            int employeeNum, int ID, String first, String last, double pay) {
+        
+        switch (employeeType) {
+            case 2:
+                employee[employeeNum - 1] = new Coordinator(ID, first, last, 
+                        pay);
+                break;
+            case 1:
+                employee[employeeNum - 1] = new Bartender(ID, first, last, 
+                        pay);
+                break;
+            default:
+                employee[employeeNum - 1] = new Waitstaff(ID, first, last, 
+                        pay);
+                break;
+        }
+    }
+    
     // Accessor methods
     public String getEntree() {
         return entrees[entree];
@@ -70,5 +87,9 @@ public class DinnerEvent extends Event {
         return "Dinner selection:\n" + "Entree:\n" + getEntree() + "\nSides:\n"
                 + getSide1() + "\n" + getSide2() + "\n" + "Dessert:\n" 
                 + getDessert() + "\n";
+    }
+    
+    public Employee[] getEmployees() {
+        return employees;
     }
 }
