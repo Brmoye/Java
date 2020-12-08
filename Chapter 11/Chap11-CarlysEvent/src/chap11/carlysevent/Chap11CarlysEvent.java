@@ -22,7 +22,7 @@ public class Chap11CarlysEvent {
             getNumOfGuests(), getPhoneNumber(), getEventType(), getEntree(), 
             getSide1(), getSide2(), getDessert());
 
-
+        getStaff(dinnerEvent);
 //      Test Events
 //        dinnerEvents[0] = new DinnerEvent("B232", 11, "(555)555-5555", 2, 0, 0, 
 //                                          1, 1);
@@ -30,10 +30,7 @@ public class Chap11CarlysEvent {
         
         Event.displayMotto();
         
-//        while(exit != 1) {
-//            displayEventInfoArray(dinnerEvents);
-//            pickSort(dinnerEvents);
-//        }
+        JOptionPane.showMessageDialog(null, displayEventInfo(dinnerEvent));
     }
     
     public static int getNumOfGuests() {
@@ -75,53 +72,134 @@ public class Chap11CarlysEvent {
     public static int getEventType() {
         String inputStr = JOptionPane.showInputDialog(null, 
             "Please enter the number of the corresponding event type:\n" 
-            + "0 - Wedding\n" + "1 - Baptism\n" + "2 - Birthday\n" 
-            + "3 - Corporate\n" + "4 - Other", 
+            + "1 - Wedding\n" + "2 - Baptism\n" + "3 - Birthday\n" 
+            + "4 - Corporate\n" + "5 - Other", 
             "Event Type Entry", JOptionPane.QUESTION_MESSAGE);
         
-        return Integer.parseInt(inputStr);
+        return Integer.parseInt(inputStr) - 1;
     }
     
+    
+    // Menu options
     public static int getEntree() {
         String inputStr = JOptionPane.showInputDialog(null, 
             "Please enter the number of the corresponding entree:\n" 
-            + "0 - Prime Rib\n" + "1 - Lobster\n" + "2 - Catfish\n" 
-            + "3 - Lasagna\n", 
+            + "1 - Prime Rib\n" + "2 - Lobster\n" + "3 - Catfish\n" 
+            + "4 - Lasagna\n", 
             "Entree Entry", JOptionPane.QUESTION_MESSAGE);
         
-        return Integer.parseInt(inputStr);
+        return Integer.parseInt(inputStr) - 1;
     }
     
     public static int getSide1() {
         String inputStr = JOptionPane.showInputDialog(null, 
             "Please enter the number for the first side choice:\n" 
-            + "0 - Mashed Potatoes\n" + "1 - Green Beans\n" 
-            + "2 - Mac-N-Cheese\n" + "3 - Caesar Salad\n", 
+            + "1 - Mashed Potatoes\n" + "2 - Green Beans\n" 
+            + "3 - Mac-N-Cheese\n" + "4 - Caesar Salad\n", 
             "First Side Entry", JOptionPane.QUESTION_MESSAGE);
         
-        return Integer.parseInt(inputStr);
+        return Integer.parseInt(inputStr) - 1;
     }
     
     public static int getSide2() {
         String inputStr = JOptionPane.showInputDialog(null, 
             "Please enter the number for the second side choice:\n" 
-            + "0 - Mashed Potatoes\n" + "1 - Green Beans\n" 
-            + "2 - Mac-N-Cheese\n" + "3 - Caesar Salad\n", 
+            + "1 - Mashed Potatoes\n" + "2 - Green Beans\n" 
+            + "3 - Mac-N-Cheese\n" + "4 - Caesar Salad\n", 
             "First Side Entry", JOptionPane.QUESTION_MESSAGE);
         
-        return Integer.parseInt(inputStr);
+        return Integer.parseInt(inputStr) - 1;
     }
     
     public static int getDessert() {
         String inputStr = JOptionPane.showInputDialog(null, 
             "Please enter the number of the corresponding dessert:\n" 
-            + "0 - Pumpkin Pie\n" + "1 - Reese's Cake\n" 
-            + "2 - Strawberry Cheesecake\n", "First Side Entry", 
+            + "1 - Pumpkin Pie\n" + "2 - Reese's Cake\n" 
+            + "3 - Strawberry Cheesecake\n", "First Side Entry", 
             JOptionPane.QUESTION_MESSAGE);
         
-        return Integer.parseInt(inputStr);
+        return Integer.parseInt(inputStr) - 1;
     }
     
+    public static void getStaff(DinnerEvent event) {
+        int guests= event.getNumOfGuests();
+        int waiter;
+        int bartender = guests / 25;
+        int employeeType = 0;
+        String strInput;
+        int count;
+ 
+        waiter = guests / 10;
+        if (waiter < 1) {
+            waiter = 1;
+        }
+        
+        for (count = 1; count <= waiter; count++) {
+            // count is being used to position the employee in the employees array
+            strInput = JOptionPane.showInputDialog(null, 
+                    "Enter the Employee ID of waitstaff #" + (count) 
+                            + ": ");
+            int ID = Integer.parseInt(strInput);
+            
+            strInput = JOptionPane.showInputDialog(null, 
+                    "Enter the First and Last name of waitstaff#" + (count) 
+                            + ": ");
+            String[] name = strInput.split(" ");
+            
+            strInput = JOptionPane.showInputDialog(null, 
+                    "Enter the pay of waitstaff#" + (count) + ": ");
+            double pay = Double.parseDouble(strInput);
+            
+            // setEmployee(get the employees[] array, is this employee waitstaff, bartender, or coordinator,
+            //             position in the array, employee ID number, first name, last name, pay rate)
+            event.setEmployee(employeeType, count, ID, name[0], name[1], pay);
+        }
+        
+        if (bartender > 0) {
+            while (bartender > 0) {
+                // Increment count first so it doesn't overwrite the last waitstaff
+                count++;
+                
+                strInput = JOptionPane.showInputDialog(null, 
+                        "Enter the Employee ID of bartender #" + bartender
+                                + ": ");
+                int ID = Integer.parseInt(strInput);
+
+                strInput = JOptionPane.showInputDialog(null, 
+                        "Enter the First and Last name of bartender#" 
+                                + bartender + ": ");
+                String[] name = strInput.split(" ");
+
+                strInput = JOptionPane.showInputDialog(null, 
+                        "Enter the pay of bartender#" + bartender + ": ");
+                double pay = Double.parseDouble(strInput);
+
+                event.setEmployee(employeeType, count, ID, name[0], name[1], 
+                                    pay);
+                bartender--;
+            }
+        }
+        
+        count++;
+        
+        strInput = JOptionPane.showInputDialog(null, 
+                "Enter the Employee ID of the coordinator: ");
+        int ID = Integer.parseInt(strInput);
+
+        strInput = JOptionPane.showInputDialog(null, 
+                "Enter the First and Last name of the coordinator: ");
+        String[] name = strInput.split(" ");
+
+        strInput = JOptionPane.showInputDialog(null, 
+                "Enter the pay of the coordinator: ");
+        double pay = Double.parseDouble(strInput);
+
+        event.setEmployee(employeeType, count, ID, name[0], name[1], pay);
+        System.out.print("Employee Type: " + employeeType + " ID:" + ID + " " 
+                + " count: " + count + " " + name[0] + " " + name[1] + " " + pay);
+    }
+    
+    // Sorting
     public static DinnerEvent[] sortEventByEventNum(DinnerEvent[] event) {
         int outerCount = 1;
         int innerCount;
@@ -179,6 +257,7 @@ public class Chap11CarlysEvent {
         return event;
     }
     
+    // Pick the method of sorting
     public static void pickSort(DinnerEvent[] events) {
         
         int choice = Integer.parseInt(JOptionPane.showInputDialog(null, 
@@ -201,47 +280,12 @@ public class Chap11CarlysEvent {
         }
     }
     
-    public static Event getSmaller(DinnerEvent event1, DinnerEvent event2) {
-        if (event1.getNumOfGuests() > event2.getNumOfGuests()) {
-            return event2;
-        }
-        else {
-            return event1;
-        }
-    }
-    
-    public static DinnerEvent getBigger(DinnerEvent event1, DinnerEvent event2) {
-        
-        if (event1.getNumOfGuests() > event2.getNumOfGuests()) {
-            JOptionPane.showMessageDialog(null, "First event number: " 
-                + event1.getEventNum() + "\nNumber of guests: " 
-                + event1.getNumOfGuests() + "\n\nSecond event number: " 
-                + event2.getEventNum() + "\nNumber of guests: " 
-                + event2.getNumOfGuests() + "\n\nLarger event: " 
-                + event1.getEventNum() + "\nNumber of guests: " 
-                + event1.getNumOfGuests(), "Carly's Event Details", 
-                JOptionPane.INFORMATION_MESSAGE);
-            return event1;
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "First event number: " 
-                + event1.getEventNum() + "\nNumber of guests: " 
-                + event1.getNumOfGuests() + "\n\nSecond event number: " 
-                + event2.getEventNum() + "\nNumber of guests: " 
-                + event2.getNumOfGuests() + "\n\nLarger event: " 
-                + event2.getEventNum() + "\nNumber of guests: " 
-                + event2.getNumOfGuests(), "Carly's Event Details", 
-                JOptionPane.INFORMATION_MESSAGE);
-            return event2;
-        }
-    }
-    
     public static void displayEventInfoArray(DinnerEvent[] events) {
         String theMessage = "";
         
         // For each event in events[]
         for (DinnerEvent event : events) {
-            theMessage += displayEventInfo(event) + event.getMenu() + "\n";
+            theMessage += displayEventInfo(event);
         }
         
         JOptionPane.showMessageDialog(null, theMessage, "Carly's Event Details",
@@ -257,10 +301,9 @@ public class Chap11CarlysEvent {
             + people.format(event.getNumOfGuests()) + " guests will be " 
             + currency.format(event.getPrice()) + ".\nThe cost per guest is: "
             + currency.format(event.getPricePerGuest())
-            + "\nLarge Event: " + event.isLargeEvent() + "\n";
+            + "\nLarge Event: " + event.isLargeEvent() + "\n" + event.getMenu() 
+            + "\n" + event.getEmployeesInfo();
         
-//        JOptionPane.showMessageDialog(null, message, "Carly's Event Details",
-//                JOptionPane.INFORMATION_MESSAGE);
         return message;
     }
 }

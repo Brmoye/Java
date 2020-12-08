@@ -47,20 +47,20 @@ public class DinnerEvent extends Event {
         this.dessert = dessert;
     }
     
-    public void setEmployee(Employee[] employee, int employeeType, 
-            int employeeNum, int ID, String first, String last, double pay) {
+    public void setEmployee(int employeeType, int employeeNum, int employeeID, 
+                            String first, String last, double pay) {
         
         switch (employeeType) {
             case 2:
-                employee[employeeNum - 1] = new Coordinator(ID, first, last, 
+                employees[employeeNum - 1] = new Coordinator(employeeID, first, last, 
                         pay);
                 break;
             case 1:
-                employee[employeeNum - 1] = new Bartender(ID, first, last, 
+                employees[employeeNum - 1] = new Bartender(employeeID, first, last, 
                         pay);
                 break;
             default:
-                employee[employeeNum - 1] = new Waitstaff(ID, first, last, 
+                employees[employeeNum - 1] = new Waitstaff(employeeID, first, last, 
                         pay);
                 break;
         }
@@ -92,4 +92,23 @@ public class DinnerEvent extends Event {
     public Employee[] getEmployees() {
         return employees;
     }
+    
+    public String getEmployeesInfo() {
+        String employeeInfo = "Employees:\n";
+        
+        for (int i = 0; i < employees.length; i++) {
+            try {
+                employeeInfo += "ID#" + employees[i].getEmployeeID()
+                    + ": " + employees[i].getFirstName() + " " 
+                    + employees[i].getLastName() 
+                    + " paid " + employees[i].getPayRate() + " per hour as "
+                    + employees[i].getJobTitle() + "\n";
+            }
+            catch (NullPointerException err) {
+                return employeeInfo;
+            }
+        }
+        return employeeInfo;
+    }
+    
 }
