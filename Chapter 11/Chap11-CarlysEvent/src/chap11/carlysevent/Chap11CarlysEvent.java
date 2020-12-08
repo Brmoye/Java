@@ -193,8 +193,6 @@ public class Chap11CarlysEvent {
         double pay = Double.parseDouble(strInput);
 
         event.setEmployee(employeeType, count, ID, name[0], name[1], pay);
-        System.out.print("Employee Type: " + employeeType + " ID:" + ID + " " 
-                + " count: " + count + " " + name[0] + " " + name[1] + " " + pay);
     }
     
     // Sorting
