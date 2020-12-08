@@ -16,17 +16,11 @@ public class Chap11CarlysEvent {
     static int exit = 0;
     
     public static void main(String[] args) {
-//        DinnerEvent[] dinnerEvents = new DinnerEvent[4];
-        
         DinnerEvent dinnerEvent = new DinnerEvent(getEventNumber(), 
             getNumOfGuests(), getPhoneNumber(), getEventType(), getEntree(), 
             getSide1(), getSide2(), getDessert());
 
         getStaff(dinnerEvent);
-//      Test Events
-//        dinnerEvents[0] = new DinnerEvent("B232", 11, "(555)555-5555", 2, 0, 0, 
-//                                          1, 1);
-
         
         Event.displayMotto();
         
