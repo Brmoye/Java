@@ -150,16 +150,14 @@ public class Chap11CarlysEvent {
                     "Enter the pay of waitstaff#" + (count) + ": ");
             double pay = Double.parseDouble(strInput);
             
-            // setEmployee(get the employees[] array, is this employee waitstaff, bartender, or coordinator,
+            // setEmployee(is this employee waitstaff, bartender, or coordinator,
             //             position in the array, employee ID number, first name, last name, pay rate)
             event.setEmployee(employeeType, count, ID, name[0], name[1], pay);
         }
         
         if (bartender > 0) {
+            employeeType = 1;
             while (bartender > 0) {
-                // Increment count first so it doesn't overwrite the last waitstaff
-                count++;
-                
                 strInput = JOptionPane.showInputDialog(null, 
                         "Enter the Employee ID of bartender #" + bartender
                                 + ": ");
@@ -177,11 +175,11 @@ public class Chap11CarlysEvent {
                 event.setEmployee(employeeType, count, ID, name[0], name[1], 
                                     pay);
                 bartender--;
+                count++;
             }
         }
         
-        count++;
-        
+        employeeType = 2;
         strInput = JOptionPane.showInputDialog(null, 
                 "Enter the Employee ID of the coordinator: ");
         int ID = Integer.parseInt(strInput);
@@ -301,7 +299,7 @@ public class Chap11CarlysEvent {
             + people.format(event.getNumOfGuests()) + " guests will be " 
             + currency.format(event.getPrice()) + ".\nThe cost per guest is: "
             + currency.format(event.getPricePerGuest())
-            + "\nLarge Event: " + event.isLargeEvent() + "\n" + event.getMenu() 
+            + "\nLarge Event: " + event.isLargeEvent() + "\n\n" + event.getMenu() 
             + "\n" + event.getEmployeesInfo();
         
         return message;
