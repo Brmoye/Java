@@ -2,7 +2,7 @@
  * Author: Brian Moye
  * Date: 2020/12/06
  * Program: Chap11-CarlysEvent
- * Purpose: Modifies Carlys Event to add a DinnerEvent class and use it.
+ * Purpose: Modifies Carlys Event to add an Employee class and sub-classes.
  */
 package chap11.carlysevent;
 
